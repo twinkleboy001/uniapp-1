@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<scroll-view scroll-x :scroll-into-view="scrollInto" scroll-with-animation class="scroll-row border-bottom border-light-secondary">
-			<view v-for="(item, index) in tabBars" class="scroll-row-item px-3 py-2 font-md" :key="'tab' + index" :class="tabIndex === index ? 'text-main font-lg font-weight-bold' : ''" @click="changeTab(index)">{{item.name}}</view>
+			<view v-for="(item, index) in tabBars" class="scroll-row-item px-3 py-2 font-md" :key="index" :id="'tab' + index" :class="tabIndex === index ? 'text-main font-lg font-weight-bold' : ''" @click="changeTab(index)">{{item.name}}</view>
 		</scroll-view>
 		
 		<!-- <block v-for="(item, index) in list" :key="index"> -->
