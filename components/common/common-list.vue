@@ -20,21 +20,21 @@
 		<image v-if="item.titlePic" :src="item.titlePic" class="rounded w-100" style="height: 350rpx;"></image>
 		<!-- 图标按钮 -->
 		<view class="flex align-center">
-			<view class="flex align-center justify-center flex-1 animated faster" hover-class="jello text-main" :class="item.support.type === 'support' ? 'text-main' : ''">
+			<view class="flex align-center justify-center flex-1 animated faster" hover-class="jello text-main" :class="item.support.type === 'support' ? 'support-active' : ''">
 				<text class="iconfont icon-dianzan2 mr-2" @click="doSupport('support')"></text>
-				<text>{{item.support.support_count}}</text>
+				<text>{{item.support.support_count || '支持'}}</text>
 			</view>
-			<view class="flex align-center justify-center flex-1 animated faster" hover-class="jello text-main" :class="item.support.type === 'unsupport' ? 'text-main' : ''">
+			<view class="flex align-center justify-center flex-1 animated faster" hover-class="jello text-main" :class="item.support.type === 'unsupport' ? 'support-active' : ''">
 				<text class="iconfont icon-cai mr-2"  @click="doSupport('unsupport')"></text>
-				<text>{{item.support.unsupport_count}}</text>
+				<text>{{item.support.unsupport_count || '反对'}}</text>
 			</view>
 			<view class="flex align-center justify-center flex-1 animated faster" hover-class="jello text-main">
 				<text class="iconfont icon-pinglun2 mr-2" @click="openDetail"></text>
-				<text>{{item.comment_count}}</text>
+				<text>{{item.comment_count || '评论'}}</text>
 			</view>
 			<view class="flex align-center justify-center flex-1 animated faster" hover-class="jello text-main">
 				<text class="iconfont icon-fenxiang mr-2" @click="openDetail"></text>
-				<text>{{item.share_num}}</text>
+				<text>{{item.share_num || '分享'}}</text>
 			</view>
 		</view>
 	</view>
@@ -71,4 +71,7 @@
 </script>
 
 <style>
+	.support-active {
+		color: #FF4A6A;
+	}
 </style>
