@@ -22,5 +22,9 @@
 	/* 自定义图标库 */
 	@import "./common/icon.css";
 	/* 动画库 */
-	@import "./common/animate.css"
+	@import "./common/animate.css";
+	/* 自定义样式库 */
+	@import "./common/free.css";
+	/* 全局样式 */
+	@import "./common/common.css";
 </style>
