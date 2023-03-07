@@ -109,6 +109,12 @@
 				url:"/pages/search/search"
 			})
 		},
+		// 监听导航按钮点击事件
+		onNavigationBarButtonTap() {
+			uni.navigateTo({
+				url:"/pages/add-input/add-input"
+			})
+		},
 		methods: {
 			//获取数据
 			getData() {
