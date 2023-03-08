@@ -9,7 +9,7 @@
 		<!-- 文本域 -->
 		<textarea v-model="content" placeholder="说一句话吧" class="uni-textarea px-2" />
 		<!-- 多图上传 -->
-		<upload-image :list="imageList" @change="choose"></upload-image>
+		<upload-image :list="imageList" @change="changeImage"></upload-image>
 		<!-- 底部操作条 -->
 		<view class="fixed-bottom bg-white flex align-center" style="height: 85rpx;">
 			<view class="iconfont icon-caidan footer-btn animated" hover-class="jello"></view>
@@ -36,7 +36,8 @@
 			}
 		},
 		methods: {
-			choose(e) {
+			changeImage(e) {
+				console.log(e)
 				this.imageList = e
 			}
 		}

@@ -74,7 +74,22 @@
 			},
 			comment_count: 2,
 			share_num: 0
-		}
+		},
+		{
+			username: "昵称4",
+			userPic: "/static/default.jpg",
+			newstime: "2019-10-20 上午09:35",
+			isFollow: false,
+			title: "我是标题4",
+			titlePic: "/static/demo/demo10.jpg",
+			support: {
+				type: "support",
+				support_count: 10,
+				unsupport_count: 0,
+			},
+			comment_count: 2,
+			share_num: 0
+		},
 	]
 	import CommonList from '@/components/common/common-list.vue';
 	import LoadMore from '@/components/common/load-more.vue';
@@ -142,7 +157,7 @@
 				})
 			},
 			doSupport(e) {
-				let item = this.list[e.index];
+				let item = this.newsList[e.index];
 				let msg = e.type === 'support' ? '顶' : '踩'
 				if(item.support.type === '') {
 					item.support[e.type+'_count']++;
