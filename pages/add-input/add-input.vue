@@ -9,12 +9,12 @@
 		<!-- 文本域 -->
 		<textarea v-model="content" placeholder="说一句话吧" class="uni-textarea px-2" />
 		<!-- 多图上传 -->
-		<upload-image :list="imageList" @change="changeImage"></upload-image>
+		<upload-image :show="show" ref="uploadImage" :list="imageList" @change="changeImage"></upload-image>
 		<!-- 底部操作条 -->
 		<view class="fixed-bottom bg-white flex align-center" style="height: 85rpx;">
 			<view class="iconfont icon-caidan footer-btn animated" hover-class="jello"></view>
 			<view class="iconfont icon-huati footer-btn animated" hover-class="jello"></view>
-			<view class="iconfont icon-tupian footer-btn animated" hover-class="jello"></view>
+			<view class="iconfont icon-tupian footer-btn animated" hover-class="jello" @click="iconClickEvent('uploadImage')"></view>
 			
 			<view class="bg-main text-white ml-auto flex justify-center align-center rounded mr-2 animated" hover-class="jello" style="width: 140rpx;height: 60rpx;">发送</view>
 		</view>
@@ -37,6 +37,11 @@
 				showBack: false
 			}
 		},
+		computed: {
+			show() {
+				return this.imageList.length > 0
+			}
+		},
 		// 监听返回
 		// onBackPress() { },
 		// 页面加载时
@@ -53,8 +58,14 @@
 			})
 		},
 		methods: {
+			iconClickEvent(e) {
+				switch(e) {
+					case 'uploadImage':
+						this.$refs.uploadImage.chooseImage();
+						break;
+				}
+			},
 			changeImage(e) {
-				console.log(e)
 				this.imageList = e
 			},
 			store() {
