@@ -32,13 +32,62 @@
 		data() {
 			return {
 				content: "",
-				imageList: []
+				imageList: [],
+				// 是否已经弹出提示框
+				showBack: false
 			}
+		},
+		// 监听返回
+		onBackPress() {
+			if ((this.content !== '' || this.imageList.length > 0) && !this.showBack ) {
+				uni.showModal({
+					content: '是否要保存为草稿？',
+					showCancel: true,
+					cancelText: '不保存',
+					confirmText: '保存',
+					success: res => {
+						// 点击确认
+						if (res.confirm) {
+							this.store()
+						} else { // 点击取消，清除缓存
+							uni.removeStorage({
+								key:"add-input"
+							})
+						}
+						// 手动执行返回
+						uni.navigateBack({ delta: 1 });
+					},
+				});
+				this.showBack = true
+				return true
+			}
+		},
+		// 页面加载时
+		onLoad() {
+			uni.getStorage({
+				key: 'add-input',
+				success: (res) => {
+					if(res.data) {
+						let result = JSON.parse(res.data)
+						this.content = result.content;
+						this.imageList = result.imageList;
+					}
+				}
+			})
 		},
 		methods: {
 			changeImage(e) {
 				console.log(e)
 				this.imageList = e
+			},
+			store() {
+				uni.setStorage({
+					key: 'add-input',
+					data: JSON.stringify({
+						content: this.content,
+						imageList: this.imageList
+					})
+				})
 			}
 		}
 	}

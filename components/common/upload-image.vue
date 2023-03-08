@@ -36,6 +36,7 @@
 		['compressed', 'original']
 	]
 	export default {
+		props: ['list'],
 		data() {
 			return {
 				title: 'choose/previewImage',
@@ -47,6 +48,9 @@
 				countIndex: 8,
 				count: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 			}
+		},
+		onReady() {
+			this.imageList = this.list
 		},
 		onUnload() {
 			this.imageList = [],
