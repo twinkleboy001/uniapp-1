@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 自定义导航 -->
-		<uni-nav-bar left-icon="back" statusBar :border="false">
+		<uni-nav-bar left-icon="back" statusBar :border="false" @clickLeft="back">
 			<view class="flex align-center justify-center w-100">
 				所有人可见<text class="iconfont icon-shezhi"></text>
 			</view>
@@ -38,30 +38,7 @@
 			}
 		},
 		// 监听返回
-		onBackPress() {
-			if ((this.content !== '' || this.imageList.length > 0) && !this.showBack ) {
-				uni.showModal({
-					content: '是否要保存为草稿？',
-					showCancel: true,
-					cancelText: '不保存',
-					confirmText: '保存',
-					success: res => {
-						// 点击确认
-						if (res.confirm) {
-							this.store()
-						} else { // 点击取消，清除缓存
-							uni.removeStorage({
-								key:"add-input"
-							})
-						}
-						// 手动执行返回
-						uni.navigateBack({ delta: 1 });
-					},
-				});
-				this.showBack = true
-				return true
-			}
-		},
+		// onBackPress() { },
 		// 页面加载时
 		onLoad() {
 			uni.getStorage({
@@ -88,6 +65,30 @@
 						imageList: this.imageList
 					})
 				})
+			},
+			back() {
+				if ((this.content !== '' || this.imageList.length > 0) && !this.showBack ) {
+					uni.showModal({
+						content: '是否要保存为草稿？',
+						showCancel: true,
+						cancelText: '不保存',
+						confirmText: '保存',
+						success: res => {
+							// 点击确认
+							if (res.confirm) {
+								this.store()
+							} else { // 点击取消，清除缓存
+								uni.removeStorage({
+									key:"add-input"
+								})
+							}
+							// 手动执行返回
+							uni.navigateBack({ delta: 1 });
+						},
+					});
+					this.showBack = true
+					return true
+				}
 			}
 		}
 	}
