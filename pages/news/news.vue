@@ -29,7 +29,19 @@
 			<!-- 话题 -->
 			<swiper-item>
 				<scroll-view scroll-y :style="'height:' + scrollH + 'px'">
-					<view v-for="i in 100" :key="i">{{i}}</view>
+					<hot-cate :hotCate="hotCate"></hot-cate>
+					<view class="p-2">
+						<view class="bg-light rounded flex align-center justify-center py-2 text-secondary">
+							<text class="iconfont icon-sousuo mr-2"></text>
+							搜索话题
+						</view>
+					</view>
+					<swiper class="px-2 pb-2" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
+						<swiper-item>
+							<image src="/static/demo/banner2.jpg" style="height: 300rpx;" class="w-100 rounded"></image>
+						</swiper-item>
+					</swiper>
+					<divider></divider>
 				</scroll-view>
 			</swiper-item>
 		</swiper>
@@ -102,11 +114,13 @@
 	import uniNavBar from '@/components/uni-ui/uni-nav-bar/uni-nav-bar.vue';
 	import commonList from '@/components/common/common-list.vue';
 	import loadMore from '@/components/common/load-more.vue';
+	import hotCate from '@/components/news/hot-cate.vue';
 	export default {
 		components: {
 			uniNavBar,
 			commonList,
-			loadMore
+			loadMore,
+			hotCate
 		},
 		data() {
 			return {
@@ -115,7 +129,8 @@
 				tabBars: [{name: '关注'}, {name: '话题'}],
 				list: [],
 				// 1.上拉加载更多 2.加载中... 3.没有更多了
-				loadmore: "上拉加载更多"
+				loadmore: "上拉加载更多",
+				hotCate: [{name: "关注"}, {name: "推荐"},{name: "体育"},{name: "热点"},{name: "财经"}]
 			}
 		},
 		onLoad() {
